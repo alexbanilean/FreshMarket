@@ -1,6 +1,7 @@
 package com.unibuc.fresh_market.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
 @Entity
@@ -23,6 +24,8 @@ public class ProductFarm {
     @JoinColumn(name = "farm_id")
     private Farm farm;
 
+    @PositiveOrZero
     private Integer quantity;
+
     private String notes;
 }

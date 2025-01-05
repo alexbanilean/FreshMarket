@@ -17,7 +17,7 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Range(min = 0, max = 5)
+    @Range(min = 1, max = 5)
     private Integer rating;
 
     private String content;

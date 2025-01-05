@@ -1,6 +1,7 @@
 package com.unibuc.fresh_market.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
 
 @Entity
@@ -23,7 +24,9 @@ public class ProductOrder {
     @JoinColumn(name = "order_id")
     private Order order;
 
+    @PositiveOrZero
     private Integer quantity;
+
     private String notes;
 
 }

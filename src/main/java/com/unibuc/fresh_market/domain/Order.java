@@ -2,6 +2,8 @@ package com.unibuc.fresh_market.domain;
 
 import com.unibuc.fresh_market.domain.security.User;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Date;
@@ -19,8 +21,13 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotNull
+    @Size(min = 1, max = 20)
     private String status;
+
     private Double totalAmount;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
     @ManyToOne(fetch = FetchType.LAZY)

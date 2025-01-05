@@ -1,6 +1,8 @@
 package com.unibuc.fresh_market.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.Date;
@@ -17,7 +19,11 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotNull
+    @Size(min = 1, max = 30)
     private String deliveryStatus;
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date deliveryDate;
 
     @OneToOne(mappedBy = "delivery")

@@ -1,9 +1,11 @@
 package com.unibuc.fresh_market.domain.security;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.unibuc.fresh_market.domain.Farm;
 import com.unibuc.fresh_market.domain.Order;
 import com.unibuc.fresh_market.domain.Review;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ public class User {
 
     @Column(unique = true)
     private String email;
+
+    @Size(min = 4, max = 20)
     private String password;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -37,6 +41,7 @@ public class User {
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JsonManagedReference
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
