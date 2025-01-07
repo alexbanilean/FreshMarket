@@ -1,12 +1,13 @@
 package com.unibuc.fresh_market.domain.security;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unibuc.fresh_market.domain.Farm;
 import com.unibuc.fresh_market.domain.Order;
 import com.unibuc.fresh_market.domain.Review;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import java.util.Set;
 @Getter
 @Builder
 @Table(name = "users")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,8 +35,8 @@ public class User {
 
     private String password;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "farm_id", referencedColumnName = "id", nullable = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "farm_id", referencedColumnName = "id")
     private Farm farm;
 
     @Singular
@@ -42,12 +44,14 @@ public class User {
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @JsonManagedReference
+    @JsonIgnore
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Order> orders = new ArrayList<>();
 }

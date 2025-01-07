@@ -1,5 +1,7 @@
 package com.unibuc.fresh_market.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unibuc.fresh_market.domain.security.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -16,6 +18,7 @@ import java.util.List;
 @Getter
 @Builder
 @Table(name = "orders")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -30,15 +33,15 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "farm_id")
     private Farm farm;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "delivery_id", referencedColumnName = "id")
     private Delivery delivery;
 

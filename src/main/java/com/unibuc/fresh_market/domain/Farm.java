@@ -1,5 +1,8 @@
 package com.unibuc.fresh_market.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unibuc.fresh_market.domain.security.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -15,6 +18,7 @@ import java.util.List;
 @Setter
 @Getter
 @Builder
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Farm {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +37,7 @@ public class Farm {
     private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<ProductFarm> productFarms = new ArrayList<>();
 
     @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL, orphanRemoval = true)

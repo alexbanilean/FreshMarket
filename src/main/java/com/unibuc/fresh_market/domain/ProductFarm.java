@@ -1,5 +1,7 @@
 package com.unibuc.fresh_market.domain;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.*;
@@ -11,6 +13,7 @@ import lombok.*;
 @Getter
 @Builder
 @Table(name = "product_farm")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class ProductFarm {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

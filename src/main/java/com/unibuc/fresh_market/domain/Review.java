@@ -1,5 +1,8 @@
 package com.unibuc.fresh_market.domain;
 
+
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.unibuc.fresh_market.domain.security.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,6 +15,7 @@ import org.hibernate.validator.constraints.Range;
 @Getter
 @Builder
 @Table(name = "reviews")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
