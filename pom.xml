@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.unibuc</groupId>
-	<artifactId>fresh-market</artifactId>
+	<artifactId>fresh_market</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Fresh Market</name>
 	<description>Fresh Market is an app where you can buy healthy products.</description>
