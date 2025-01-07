@@ -91,7 +91,7 @@ class DeliveryControllerTest {
 
         // Then
         assertEquals(200, response.getStatusCode().value());
-        assertEquals(delivery, response.getBody());
+        assertEquals(Optional.of(delivery), response.getBody());
     }
 
     @Test
@@ -121,7 +121,7 @@ class DeliveryControllerTest {
 
         // Then
         assertEquals(200, response.getStatusCode().value());
-        assertEquals(updatedDelivery, response.getBody());
+        assertEquals(Optional.of(updatedDelivery), response.getBody());
     }
 
     @Test
@@ -167,7 +167,7 @@ class DeliveryControllerTest {
 
         // Then
         assertEquals(200, response.getStatusCode().value());
-        assertEquals(delivery, response.getBody());
+        assertEquals(Optional.of(delivery), response.getBody());
     }
 
     @Test
