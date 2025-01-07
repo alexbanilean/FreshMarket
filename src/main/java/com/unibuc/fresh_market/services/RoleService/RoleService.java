@@ -3,11 +3,12 @@ package com.unibuc.fresh_market.services.RoleService;
 import com.unibuc.fresh_market.domain.security.Role;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RoleService {
     Role createRole(Role role);
-    Role getRoleById(Integer id);
+    Optional<Role> getRoleById(Integer id);
     List<Role> getAllRoles();
-    Role updateRole(Integer id, Role role);
-    void deleteRole(Integer id);
+    Optional<Role> updateRole(Integer id, Role role);
+    Optional<Role> deleteRole(Integer id);
 }

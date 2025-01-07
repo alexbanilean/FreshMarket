@@ -1,7 +1,7 @@
 package com.unibuc.fresh_market.domain;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -19,7 +19,7 @@ public class Delivery {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotNull
+    @NotBlank
     @Size(min = 1, max = 30)
     private String deliveryStatus;
 

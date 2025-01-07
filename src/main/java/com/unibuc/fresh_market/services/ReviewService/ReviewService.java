@@ -3,14 +3,15 @@ package com.unibuc.fresh_market.services.ReviewService;
 import com.unibuc.fresh_market.domain.Review;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface ReviewService {
     Review createReview(Review review);
-    Review getReviewById(Integer id);
+    Optional<Review> getReviewById(Integer id);
     List<Review> getAllReviews();
-    Review updateReview(Integer id, Review review);
-    void deleteReview(Integer id);
+    Optional<Review> updateReview(Integer id, Review review);
+    Optional<Review> deleteReview(Integer id);
 
-    List<Review> getReviewsByFarmerId(Integer farmerId);
-    double calculateAverageRatingByFarmerId(Integer farmerId);
+    List<Review> getReviewsByFarmId(Integer farmId);
+    double calculateAverageRatingByFarmId(Integer farmId);
 }

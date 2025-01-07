@@ -5,6 +5,7 @@ import com.unibuc.fresh_market.domain.Farm;
 import com.unibuc.fresh_market.domain.Order;
 import com.unibuc.fresh_market.domain.Review;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -24,12 +25,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
+    @NotBlank
     private String username;
 
     @Column(unique = true)
     private String email;
 
-    @Size(min = 4, max = 20)
     private String password;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

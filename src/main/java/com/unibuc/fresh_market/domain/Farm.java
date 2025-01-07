@@ -2,7 +2,7 @@ package com.unibuc.fresh_market.domain;
 
 import com.unibuc.fresh_market.domain.security.User;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -20,7 +20,7 @@ public class Farm {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NotNull
+    @NotBlank
     @Size(min = 1, max = 20)
     private String name;
 
@@ -34,4 +34,7 @@ public class Farm {
 
     @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductFarm> productFarms = new ArrayList<>();
+
+    @OneToMany(mappedBy = "farm", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
 }

@@ -5,13 +5,14 @@ import com.unibuc.fresh_market.domain.Review;
 import com.unibuc.fresh_market.domain.security.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     User createUser(User user);
     List<User> getAllUsers();
-    User getUserById(Integer id);
-    User updateUser(Integer id, User user);
-    void deleteUser(Integer id);
+    Optional<User> getUserById(Integer id);
+    Optional<User> updateUser(Integer id, User user);
+    Optional<User> deleteUser(Integer id);
 
     List<Order> getOrdersByUserId(Integer userId);
     List<Review> getReviewsByUserId(Integer userId);
